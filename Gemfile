@@ -3,10 +3,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.2'
 gem 'pg'
-gem 'devise'
 gem 'devise_token_auth'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'rack-cors', :require => 'rack/cors'
 
 gem 'rails_12factor', group: :production
 
