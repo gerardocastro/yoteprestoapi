@@ -12,6 +12,8 @@ module Yoteprestoapi
 
     config.serve_static_files = true
 
+    config.middleware.use Rack::Attack
+
     config.middleware.use Rack::Cors do
       allow do
         origins '*'
@@ -33,5 +35,6 @@ module Yoteprestoapi
     end
 
     config.active_record.raise_in_transactional_callbacks = false
+     ActionController::Parameters.action_on_unpermitted_parameters = :log
   end
 end

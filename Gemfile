@@ -8,6 +8,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'figaro' 
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'rack-attack'
 
 gem 'rails_12factor', group: :production
 

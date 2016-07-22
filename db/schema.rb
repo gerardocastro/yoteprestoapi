@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160721062842) do
+ActiveRecord::Schema.define(version: 20160721190703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
-    t.string   "provider",               default: "email", null: false
-    t.string   "uid",                    default: "",      null: false
-    t.string   "encrypted_password",     default: "",      null: false
+    t.string   "provider",                           default: "email", null: false
+    t.string   "uid",                                default: "",      null: false
+    t.string   "encrypted_password",                 default: "",      null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.integer  "sign_in_count",          default: 0,       null: false
+    t.integer  "sign_in_count",                      default: 0,       null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 20160721062842) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
+    t.string   "first_name",             limit: 100
+    t.string   "second_name",            limit: 100
+    t.string   "f_last_name",            limit: 100
+    t.string   "s_last_name",            limit: 100
+    t.string   "sex",                    limit: 10
+    t.datetime "birth_day"
+    t.string   "curp",                   limit: 18
+    t.string   "rfc",                    limit: 13
+    t.string   "mobile",                 limit: 20
+    t.string   "phone",                  limit: 20
+    t.boolean  "finished",                           default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

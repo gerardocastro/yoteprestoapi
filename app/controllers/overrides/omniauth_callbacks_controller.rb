@@ -2,10 +2,8 @@ class Overrides::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCallback
   protected
 
     def assign_provider_attrs(user, auth_hash)
-      user.assign_attributes({
-        username: auth_hash['info']['name'],
-        image:    auth_hash['info']['image'],
-        email:    auth_hash['info']['email']
-      })
+      user.username = auth_hash['info']['name'] if user.username.blank?
+      user.email = auth_hash['info']['email'] if user.email.blank?
+      user.image = auth_hash['info']['image']
     end
 end
