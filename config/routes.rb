@@ -6,6 +6,7 @@ Rails.application.routes.draw do
           sessions:           'overrides/sessions'
         }
       resource :users, only: [:show, :update]
+      resources :applications, except: [:new, :edit, :destroy]
     end
   end
 end

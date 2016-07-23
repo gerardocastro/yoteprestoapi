@@ -1,10 +1,13 @@
 require 'rails_helper'
 
-describe User do
+RSpec.describe User, type: :model do
+  it { should have_many(:applications) }
+
   it { is_expected.to validate_presence_of(:username) }
   it { is_expected.to validate_inclusion_of(:sex).in_array(%w(Male Female)) }
   it { is_expected.to validate_length_of(:curp).is_at_most(18) }
   it { is_expected.to validate_length_of(:rfc).is_at_most(13) }
+
   
   it 'expect to have a unique #username' do
     FactoryGirl.create(:user)

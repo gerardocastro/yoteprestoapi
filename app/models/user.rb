@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
 
   include DeviseTokenAuth::Concerns::User
 
+  # assosiations
+  has_many :applications
+
   # constants
   MANDATORY_ATTRIBUTES = %w(username first_name second_name f_last_name s_last_name sex curp rfc mobile phone)
 

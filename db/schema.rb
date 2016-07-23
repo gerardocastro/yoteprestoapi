@@ -11,10 +11,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160721190703) do
+ActiveRecord::Schema.define(version: 20160722172104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "applications", force: :cascade do |t|
+    t.string   "loan_title"
+    t.text     "loan_detail"
+    t.string   "loan_destination"
+    t.string   "funding_days"
+    t.boolean  "has_credit_card",  default: false
+    t.boolean  "has_insurance",    default: false
+    t.boolean  "has_car",          default: false
+    t.string   "other_income"
+    t.string   "education"
+    t.string   "pay_job"
+    t.string   "year_job"
+    t.string   "company_job"
+    t.integer  "user_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "applications", ["user_id"], name: "index_applications_on_user_id", using: :btree
+
+  create_table "expenses", force: :cascade do |t|
+    t.string   "expense_type"
+    t.float    "amount"
+    t.integer  "application_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "expenses", ["application_id"], name: "index_expenses_on_application_id", using: :btree
+
+  create_table "references", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "second_name"
+    t.string   "f_last_name"
+    t.string   "s_last_name"
+    t.string   "mobile"
+    t.string   "relation_type"
+    t.integer  "application_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "references", ["application_id"], name: "index_references_on_application_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",                           default: "email", null: false
